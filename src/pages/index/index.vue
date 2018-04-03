@@ -1,6 +1,6 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
-
+    <topBookBtn />
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
@@ -24,17 +24,19 @@
 
 <script>
 import card from '@/components/card'
+import topBookBtn from './component/topBookBtn'
 
 export default {
   data () {
     return {
       motto: 'Hello World',
-      userInfo: {}
+      userInfo: {},
     }
   },
 
   components: {
-    card
+    card,
+    topBookBtn,
   },
 
   methods: {
@@ -49,20 +51,20 @@ export default {
           wx.getUserInfo({
             success: (res) => {
               this.userInfo = res.userInfo
-            }
+            },
           })
-        }
+        },
       })
     },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
-    }
+    },
   },
 
   created () {
     // 调用应用实例的方法获取全局数据
     this.getUserInfo()
-  }
+  },
 }
 </script>
 

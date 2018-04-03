@@ -18,7 +18,7 @@ export default {
   computed: {
     count () {
       return store.state.count
-    }
+    },
   },
   methods: {
     increment () {
@@ -26,8 +26,8 @@ export default {
     },
     decrement () {
       store.commit('decrement')
-    }
-  }
+    },
+  },
 }
 
 </script>
