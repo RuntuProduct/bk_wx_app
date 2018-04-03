@@ -1,6 +1,9 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
     <topBookBtn />
+    <div class="inner-container">
+      <monthFlow />
+    </div>
     <div class="userinfo" @click="bindViewTap">
       <img class="userinfo-avatar" v-if="userInfo.avatarUrl" :src="userInfo.avatarUrl" background-size="cover" />
       <div class="userinfo-nickname">
@@ -25,6 +28,7 @@
 <script>
 import card from '@/components/card'
 import topBookBtn from './component/topBookBtn'
+import monthFlow from './component/monthFlow'
 
 export default {
   data () {
@@ -37,6 +41,7 @@ export default {
   components: {
     card,
     topBookBtn,
+    monthFlow,
   },
 
   methods: {
@@ -69,6 +74,11 @@ export default {
 </script>
 
 <style scoped>
+.inner-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
