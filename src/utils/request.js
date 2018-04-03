@@ -98,8 +98,7 @@ const request = async (options) => {
       wx.showModal({
         title: '网络状态异常！',
         content: '请检查您的网络配置是否正常',
-        showCancel: true,
-        cancelText: '取消',
+        showCancel: false,
         confirmText: '了解',
       })
     }
