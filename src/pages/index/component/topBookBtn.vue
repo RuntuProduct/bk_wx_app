@@ -1,5 +1,5 @@
 <template>
-  <div class="con">
+  <div class="con" @click.stop="click" :class="{ 'con': true, 'act': !state }">
     <div class="cir-part"></div>
     <div class="content">{{context}}</div>
   </div>
@@ -9,10 +9,10 @@
 export default {
   data () {
     return {
-      show: false,
       context: '通',
     }
   },
+  props: ['state', 'click'],
 }
 </script>
 
@@ -24,12 +24,17 @@ export default {
 
 .con {
   position: absolute;
-  left: 0;
+  left: -@hei;
   top: 16px;
   height: @hei;
   width: 0px + @hei/2;
   background: @bc;
   z-index: 1;
+  transition: left ease .3s;
+
+  &.act {
+    left: 0;
+  }
 
   .cir-part {
     height: @hei;

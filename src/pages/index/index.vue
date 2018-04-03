@@ -1,6 +1,9 @@
 <template>
   <div class="container" @click="clickHandle('test click', $event)">
-    <topBookBtn />
+    <!-- 左侧菜单按钮 -->
+    <topBookBtn :state="leftShow" :click="showLeft" />
+    <!-- 左侧菜单列表 -->
+    <leftPart :state="leftShow" :hideClick="hideLeft" />
     <div class="inner-container">
       <!-- 当月汇总 -->
       <monthFlow :outlay="baseInfo.outlay" :income="baseInfo.income" :budget="baseInfo.budget" />
@@ -33,10 +36,16 @@
 <script>
 import store from './store'
 import topBookBtn from './component/topBookBtn'
+import leftPart from './component/leftPart'
 import monthFlow from './component/monthFlow'
 import item from './component/listItem'
 
 export default {
+  data () {
+    return {
+      leftShow: false,
+    }
+  },
   computed: {
     baseInfo: () => store.state.baseInfo,
     dataDay: () => store.state.todayInfo,
@@ -46,28 +55,23 @@ export default {
 
   components: {
     topBookBtn,
+    leftPart,
     monthFlow,
     item,
   },
 
   methods: {
-    getUserInfo () {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: (res) => {
-              this.userInfo = res.userInfo
-            },
-          })
-        },
-      })
-    },
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
     },
     getBaseInfo () {
       store.dispatch('getBaseInfo')
+    },
+    showLeft () {
+      this.leftShow = true
+    },
+    hideLeft () {
+      this.leftShow = false
     },
   },
 
