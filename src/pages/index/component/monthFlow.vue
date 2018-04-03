@@ -21,12 +21,11 @@
 
 <script>
 export default {
-  data () {
-    return {
-      outlay: 100.00,
-      income: 20.00,
-      budgetLast: 2900.00,
-    }
+  props: ['outlay', 'income', 'budget'],
+  computed: {
+    budgetLast () {
+      return this.budget - this.outlay
+    },
   },
 }
 </script>

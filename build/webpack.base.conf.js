@@ -43,6 +43,8 @@ module.exports = {
       'vue': 'mpvue',
       '@': resolve('src'),
       'less': resolve('src/sources/less'),
+      '@services': resolve('src/services'),
+      '@utils': resolve('src/utils'),
     },
     symlinks: false
   },

@@ -3,27 +3,27 @@
     <topBookBtn />
     <div class="inner-container">
       <!-- 当月汇总 -->
-      <monthFlow />
+      <monthFlow :outlay="baseInfo.outlay" :income="baseInfo.income" :budget="baseInfo.budget" />
       <!-- 记一笔按钮 -->
-      <div class="dealBtn">记一笔</div>
+      <div class="dealBtn" @click="getBaseInfo">记一笔</div>
       <div class="list-area">
         <!-- 日汇总 -->
         <item
           title="今日"
-          :income="data_day.income"
-          :outlay="data_day.outlay"
+          :income="dataDay.income"
+          :outlay="dataDay.outlay"
         />
         <!-- 周汇总 -->
         <item
           title="本周"
-          :income="data_week.income"
-          :outlay="data_week.outlay"
+          :income="dataWeek.income"
+          :outlay="dataWeek.outlay"
         />
         <!-- 月汇总 -->
         <item
           title="本月"
-          :income="data_month.income"
-          :outlay="data_month.outlay"
+          :income="dataMonth.income"
+          :outlay="dataMonth.outlay"
         />
       </div>
     </div>
@@ -31,17 +31,17 @@
 </template>
 
 <script>
+import store from './store'
 import topBookBtn from './component/topBookBtn'
 import monthFlow from './component/monthFlow'
 import item from './component/listItem'
 
 export default {
-  data () {
-    return {
-      data_day: { income: 100.00, outlay: 20.00 },
-      data_week: { income: 0.00, outlay: 0.00 },
-      data_month: { income: 0.00, outlay: 0.00 },
-    }
+  computed: {
+    baseInfo: () => store.state.baseInfo,
+    dataDay: () => store.state.todayInfo,
+    dataWeek: () => store.state.weekInfo,
+    dataMonth: () => store.state.baseInfo,
   },
 
   components: {
@@ -51,10 +51,6 @@ export default {
   },
 
   methods: {
-    bindViewTap () {
-      const url = '../logs/main'
-      wx.navigateTo({ url })
-    },
     getUserInfo () {
       // 调用登录接口
       wx.login({
@@ -70,11 +66,15 @@ export default {
     clickHandle (msg, ev) {
       console.log('clickHandle:', msg, ev)
     },
+    getBaseInfo () {
+      store.dispatch('getBaseInfo')
+    },
   },
 
   created () {
     // 调用应用实例的方法获取全局数据
     // this.getUserInfo()
+    console.log(store)
   },
 }
 </script>

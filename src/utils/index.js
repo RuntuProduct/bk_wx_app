@@ -1,3 +1,8 @@
+import Vuex from 'vuex'
+import createLogger from 'vuex/dist/logger'
+import request from './request'
+import config from './config'
+
 function formatNumber (n) {
   const str = n.toString()
   return str[1] ? str : `0${str}`
@@ -18,3 +23,17 @@ export function formatTime (date) {
   return `${t1} ${t2}`
 }
 
+export const wrapStore = (config) => {
+  const debug = process.env.NODE_ENV !== 'production'
+
+  return new Vuex.Store({
+    strict: debug,
+    plugins: debug ? [createLogger()] : [],
+    ...config,
+  })
+}
+
+export {
+  request,
+  config,
+}
