@@ -25,5 +25,7 @@ export default {
   -moz-transition: width 2s;
   -webkit-transition: width 2s;
   -o-transition: width 2s;
+
+  font-family: 'San Francisco Text Regular';
 }
 </style>
