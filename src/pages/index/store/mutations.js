@@ -4,3 +4,7 @@ export const saveBaseInfo = (state, payload) => {
   state.todayInfo = todayInfo
   state.weekInfo = weekInfo
 }
+
+export const saveBookList = (state, payload) => {
+  state.bookList = payload
+}

@@ -3,7 +3,7 @@
     <!-- 左侧菜单按钮 -->
     <topBookBtn :state="leftShow" :click="showLeft" />
     <!-- 左侧菜单列表 -->
-    <leftPart :state="leftShow" :hideClick="hideLeft" />
+    <leftPart :state="leftShow" :hideClick="hideLeft" :data="bookList" />
     <div class="inner-container">
       <!-- 当月汇总 -->
       <monthFlow :outlay="baseInfo.outlay" :income="baseInfo.income" :budget="baseInfo.budget" />
@@ -51,6 +51,7 @@ export default {
     dataDay: () => store.state.todayInfo,
     dataWeek: () => store.state.weekInfo,
     dataMonth: () => store.state.baseInfo,
+    bookList: () => store.state.bookList,
   },
 
   components: {
@@ -67,8 +68,12 @@ export default {
     getBaseInfo () {
       store.dispatch('getBaseInfo')
     },
+    getBookList () {
+      store.dispatch('getBookList')
+    },
     showLeft () {
       this.leftShow = true
+      this.getBookList()
     },
     hideLeft () {
       this.leftShow = false

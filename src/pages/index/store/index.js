@@ -22,6 +22,7 @@ const state = {
     income: 0,
     outlay: 0,
   },
+  bookList: [],
 }
 
 const store = wrapStore({
