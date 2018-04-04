@@ -85,10 +85,14 @@ export default {
 
 .list {
   display: flex;
+  height: 100%;
+  overflow-x: auto;
+  flex-grow: 1;
   flex-direction: column;
 
   .item-con {
     display: flex;
+    flex-shrink: 0;
     border-bottom: 1px solid @color_border_gray;
     color: #fff;
 
