@@ -19,7 +19,7 @@ export default {
 <style lang="less" scoped>
 @import '~less/base.less';
 
-@hei: 64px;
+@hei: 48px;
 @bc: @color_brand;
 
 .con {

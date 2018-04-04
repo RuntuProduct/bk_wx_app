@@ -91,7 +91,7 @@ const request = async (options) => {
         title: msg,
         icon: 'none',
         mask: true,
-        duration: 2000,
+        duration: 500,
       })
     } else {
       // 显示网络状态异常弹窗
