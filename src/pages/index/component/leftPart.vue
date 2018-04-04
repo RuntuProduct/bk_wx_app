@@ -12,11 +12,12 @@
             </div>
           </div>
           <div class="btn-area">
-            <div class="btn">编辑</div>
-            <div class="btn">删除</div>
+            <div class="btn iconfont icon-setting-o" />
+            <div class="btn iconfont icon-delete-o" />
           </div>
         </li>
         <li class="item-con add">
+          <div class="iconfont icon-add-o"></div>
           添加账单
         </li>
       </ul>
@@ -32,6 +33,7 @@ export default {
 
 <style lang="less" scoped>
 @import '~less/base.less';
+@import '~less/font.less';
 
 @wid: 60%;
 @zIndex: 20;
@@ -142,10 +144,15 @@ export default {
       flex-direction: column;
       flex-shrink: 0;
       align-items: center;
-      justify-content: space-around;
+      justify-content: center;
 
       .btn {
-        font-size: @font_size_remark;
+        font-size: @icon_size_small;
+        margin-bottom: 8px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
